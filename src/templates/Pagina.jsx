@@ -11,7 +11,7 @@ export default function Pagina(props) {
                 {
                     // filhos da página
                 }
-                {props.children} 
+                {props.children}
             </div>
             <Rodape conteudo="Rua X, 100 - Vila Tal - Presidente Prudente/SP - CNPJ 00.000.000/0001-00"/>
         </>

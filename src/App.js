@@ -1,9 +1,9 @@
-import TelaCadastroCliente from "./telasCadastro/TelaCadastroCliente";
+import Rotas from "./templates/Rota";
 
 function App() {
   return (
     <div className="App">
-      <TelaCadastroCliente />
+      <Rotas/>
     </div>
   );
 }
