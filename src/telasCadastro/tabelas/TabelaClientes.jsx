@@ -1,10 +1,11 @@
 import { Button, Container, Table } from "react-bootstrap";
-import { Link } from "react-router-dom";
 
 export default function TabelaClientes(props) {
     return (
         <Container>
-            <Button type="button" as={Link} to="/cadcliente">Novo Cliente</Button>
+            <Button type="button" onClick={()=>{
+                props.exibirFormulario(true);
+            }}>Novo Cliente</Button>
             <Table striped bordered hover>
                 <thead>
                     <tr>
