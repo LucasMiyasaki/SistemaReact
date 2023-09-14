@@ -18,7 +18,6 @@ export default function FormCadCliente(props) {
 
     function manipularMudancas(e) {
         const componente = e.currentTarget;
-        console.log(componente.value)
         setCliente({...cliente,[componente.name]:componente.value});
     }
 
@@ -27,6 +26,19 @@ export default function FormCadCliente(props) {
         if(form.checkValidity()) {
             //todos os campos preenchidos
             //mandar os dados para o backend
+            let client = {
+                cpf: document.getElementById('cpf').value,
+                nome: document.getElementById('nome').value,
+                endereco: document.getElementById('endereco').value,
+                numero: document.getElementById('numero').value,
+                bairro: document.getElementById('bairro').value,
+                cidade: document.getElementById('cidade').value,
+                uf: document.getElementById('uf').value,
+                cep: document.getElementById('cep').value,
+            }
+            console.log(client)
+
+            props.setLista([...props.lista,client]);
             setCliente(estadoInicialCliente);
             setFormValido(false);
         }
@@ -165,7 +177,7 @@ export default function FormCadCliente(props) {
                                 onChange={manipularMudancas}
                                 value={cliente.uf}
                                 required>
-                                <option value="SP" selected>São Paulo</option>
+                                <option defaultValue="SP">São Paulo</option>
                                 <option value="AC">Acre</option>
                                 <option value="AL">Alagoas</option>
                                 <option value="AP">Amapá</option>
