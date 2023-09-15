@@ -28,7 +28,7 @@ export default function TabelaProdutos(props) {
                                     <td>{prod.codigo}</td>
                                     <td>{prod.validade}</td>
                                     <td>{prod.fabricacao}</td>
-                                    <td>{prod.preco}</td>
+                                    <td>R$ {prod.preco}</td>
                                     <td>{prod.descricao}</td>
                                 </tr>
                             ))
