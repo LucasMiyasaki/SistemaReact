@@ -37,8 +37,13 @@ export default function FormCadCliente(props) {
                 cep: document.getElementById('cep').value,
             }
             console.log(client)
+            if(!props.edicao)
+                props.setLista([...props.lista,client]);
 
-            props.setLista([...props.lista,client]);
+            else {
+                props.setLista([...props.lista.filter((item) => item.cpf !== client.cpf),client]);
+                props.setEdicao(false);
+            }
             setCliente(estadoInicialCliente);
             setFormValido(false);
         }
@@ -230,7 +235,7 @@ export default function FormCadCliente(props) {
                 </Row>
                 <Row>
                     <Col md={6} offset={5} className="d-flex justify-content-end">
-                        <Button type="submit" variant={"primary"}>Cadastrar</Button>
+                        <Button type="submit" variant={"primary"}>{props.edicao ? "Alterar" : "Cadastrar"}</Button>
                     </Col>
                     <Col md={6} offset={5}>
                         <Button type="button" variant={"secondary"} onClick={()=>{

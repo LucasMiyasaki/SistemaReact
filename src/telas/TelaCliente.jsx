@@ -7,6 +7,18 @@ import { useState } from "react";
 export default function TelaCadastroCliente(props) {
     const [exibirFormulario, setExibirFormulario] = useState(false);
     const [listaCliente, setListaCliente] = useState([]);
+    const [clienteEdit, setClienteEdit] = useState({
+        cpf:'',
+        nome:'',
+        endereco:'',
+        numero:'',
+        bairro:'',
+        cidade:'',
+        uf:'SP',
+        cep:''
+    });
+
+    const [edicao, setEdicao] = useState(false);
 
     return (
         <Container>
@@ -18,10 +30,17 @@ export default function TelaCadastroCliente(props) {
                     <FormCadCliente
                         lista={listaCliente}
                         setLista={setListaCliente}
-                        exibirFormulario={setExibirFormulario}/> 
+                        exibirFormulario={setExibirFormulario}
+                        clienteEdit={clienteEdit}
+                        edicao={edicao}
+                        setEdicao={setEdicao}/> 
                     : <TabelaClientes 
                         lista={listaCliente}
-                        exibirFormulario={setExibirFormulario}/>
+                        setLista={setListaCliente}
+                        exibirFormulario={setExibirFormulario}
+                        clienteEdit={clienteEdit}
+                        setEdicao={setEdicao}
+                        edicao={edicao}/>
                 }
             </Pagina>
         </Container>

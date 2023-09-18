@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import TelaCadastroCliente from "./telas/TelaCadastroCliente";
+import TelaCadastroCliente from "./telas/TelaCliente";
 import TelaProdutos from "./telas/TelaProdutos";
 import TelaMenu from "./telas/TelaMenu";
 import Tela404 from "./telas/Tela404";
