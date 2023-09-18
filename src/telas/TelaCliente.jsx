@@ -33,6 +33,7 @@ export default function TelaCadastroCliente(props) {
                         exibirFormulario={setExibirFormulario}
                         clienteEdit={clienteEdit}
                         edicao={edicao}
+                        setClienteEdit={setClienteEdit}
                         setEdicao={setEdicao}/> 
                     : <TabelaClientes 
                         lista={listaCliente}
@@ -40,6 +41,7 @@ export default function TelaCadastroCliente(props) {
                         exibirFormulario={setExibirFormulario}
                         clienteEdit={clienteEdit}
                         setEdicao={setEdicao}
+                        setClienteEdit={setClienteEdit}
                         edicao={edicao}/>
                 }
             </Pagina>

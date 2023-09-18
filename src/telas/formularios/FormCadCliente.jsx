@@ -2,16 +2,17 @@ import { Button, Container, Form, Row, Col, FloatingLabel } from "react-bootstra
 import { useState } from "react";
 
 export default function FormCadCliente(props) {
-    const estadoInicialCliente = {
-        cpf:'',
-        nome:'',
-        endereco:'',
-        numero:'',
-        bairro:'',
-        cidade:'',
-        uf:'SP',
-        cep:''
+    const clienteVazio = {
+        cpf: '',
+        nome: '',
+        endereco: '',
+        numero: '',
+        bairro: '',
+        cidade: '',
+        uf: 'SP',
+        cep: ''
     }
+    const estadoInicialCliente = props.clienteEdit;
 
     const [cliente, setCliente] = useState(estadoInicialCliente);
     const [formValido, setFormValido] = useState(false);
@@ -37,14 +38,18 @@ export default function FormCadCliente(props) {
                 cep: document.getElementById('cep').value,
             }
             console.log(client)
-            if(!props.edicao)
+            if(!props.edicao) {
                 props.setLista([...props.lista,client]);
-
+                window.alert('Cliente cadastrado com sucesso!');
+            }
             else {
                 props.setLista([...props.lista.filter((item) => item.cpf !== client.cpf),client]);
                 props.setEdicao(false);
+                props.setClienteEdit(clienteVazio);
+                window.alert('Cliente alterado com sucesso!');
             }
-            setCliente(estadoInicialCliente);
+
+            setCliente(clienteVazio);
             setFormValido(false);
         }
         else
@@ -239,7 +244,9 @@ export default function FormCadCliente(props) {
                     </Col>
                     <Col md={6} offset={5}>
                         <Button type="button" variant={"secondary"} onClick={()=>{
-                            props.exibirFormulario(false)
+                            props.exibirFormulario(false);
+                            props.setEdicao(false);
+                            props.setClienteEdit(clienteVazio);
                         }}>Voltar</Button>
                     </Col>
                 </Row>
