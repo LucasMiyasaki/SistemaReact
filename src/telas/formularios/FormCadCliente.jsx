@@ -40,7 +40,9 @@ export default function FormCadCliente(props) {
             console.log(client)
             if(!props.edicao) {
                 props.setLista([...props.lista,client]);
-                window.alert('Cliente cadastrado com sucesso!');
+                props.setMensagem('Cliente cadastrado com sucesso!');
+                props.setTipoMensagem('success');
+                props.setMostrarMensagem(true);
             }
             else {
                 props.setLista([...props.lista.filter((item) => item.cpf !== client.cpf),client]);
