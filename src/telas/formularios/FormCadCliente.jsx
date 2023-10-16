@@ -1,5 +1,7 @@
 import { Button, Container, Form, Row, Col, FloatingLabel } from "react-bootstrap";
 import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { adicionar, atualizar} from '../../redux/clienteReducer';
 
 export default function FormCadCliente(props) {
     const clienteVazio = {
@@ -17,6 +19,9 @@ export default function FormCadCliente(props) {
     const [cliente, setCliente] = useState(estadoInicialCliente);
     const [formValido, setFormValido] = useState(false);
 
+    const {status, mensagem, listaClientes} = useSelector((state) => state.cliente);
+    const dispatch = useDispatch();
+
     function manipularMudancas(e) {
         const componente = e.currentTarget;
         setCliente({...cliente,[componente.name]:componente.value});
@@ -27,25 +32,17 @@ export default function FormCadCliente(props) {
         if(form.checkValidity()) {
             //todos os campos preenchidos
             //mandar os dados para o backend
-            let client = {
-                cpf: document.getElementById('cpf').value,
-                nome: document.getElementById('nome').value,
-                endereco: document.getElementById('endereco').value,
-                numero: document.getElementById('numero').value,
-                bairro: document.getElementById('bairro').value,
-                cidade: document.getElementById('cidade').value,
-                uf: document.getElementById('uf').value,
-                cep: document.getElementById('cep').value,
-            }
-            console.log(client)
             if(!props.edicao) {
-                props.setLista([...props.lista,client]);
-                props.setMensagem('Cliente cadastrado com sucesso!');
-                props.setTipoMensagem('success');
-                props.setMostrarMensagem(true);
+                //props.setLista([...props.lista,client]);
+
+                dispatch(adicionar(cliente));
+                window.alert('Cliente cadastrado com sucesso!');
             }
             else {
-                props.setLista([...props.lista.filter((item) => item.cpf !== client.cpf),client]);
+                //props.setLista([...props.lista.filter((item) => item.cpf !== client.cpf),client]);
+
+                dispatch(atualizar(cliente));
+
                 props.setEdicao(false);
                 props.setClienteEdit(clienteVazio);
                 window.alert('Cliente alterado com sucesso!');
