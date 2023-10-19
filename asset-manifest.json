@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/SistemaReact/static/css/main.99e4cf39.css",
+    "main.js": "/SistemaReact/static/js/main.565d6164.js",
+    "static/media/haru.png": "/SistemaReact/static/media/haru.8699ee2ecfba0936b21d.png",
+    "index.html": "/SistemaReact/index.html",
+    "main.99e4cf39.css.map": "/SistemaReact/static/css/main.99e4cf39.css.map",
+    "main.565d6164.js.map": "/SistemaReact/static/js/main.565d6164.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.99e4cf39.css",
+    "static/js/main.565d6164.js"
+  ]
+}
