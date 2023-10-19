@@ -76,6 +76,7 @@ export default function FormCadCliente(props) {
                                     name="cpf"
                                     onChange={manipularMudancas}
                                     value = {cliente.cpf}
+                                    disabled={props.edicao ? true : false}
                                     required />
                             </FloatingLabel>
                             <Form.Control.Feedback type="invalid">Informe o cpf!</Form.Control.Feedback>
@@ -239,7 +240,7 @@ export default function FormCadCliente(props) {
                 </Row>
                 <Row>
                     <Col md={6} offset={5} className="d-flex justify-content-end">
-                        <Button type="submit" variant={"primary"}>{props.edicao ? "Alterar" : "Cadastrar"}</Button>
+                        <Button type="submit" variant={props.edicao ? "warning" : "primary"}>{props.edicao ? "Alterar" : "Cadastrar"}</Button>
                     </Col>
                     <Col md={6} offset={5}>
                         <Button type="button" variant={"secondary"} onClick={()=>{

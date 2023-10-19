@@ -5,6 +5,7 @@ import TelaMenu from "./telas/TelaMenu";
 import Tela404 from "./telas/Tela404";
 import { Provider } from "react-redux";
 import store from "./redux/store";
+import TelaFornecedores from "./telas/TelaFornecedores";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Routes>
             <Route path="/clientes" element={<TelaCadastroCliente />} />
             <Route path="/produtos" element={<TelaProdutos />} />
+            <Route path="/fornecedores" element={<TelaFornecedores />} />
             <Route path="/" element={<TelaMenu />} />
             <Route path="*" element={<Tela404 />} />
           </Routes>

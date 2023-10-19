@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Col, Container, FloatingLabel, Form, Row, Button } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { adicionarProd, atualizarProd } from '../../redux/produtoReducer';
 
-export default function FormCadProduto(props) {
-    const estadoInicialProduto = {
+export default function FormCadFornecedores(props) {
+    const prodVazio = {
         nome:'',
         marca:'',
         codigo:'',
@@ -11,9 +13,13 @@ export default function FormCadProduto(props) {
         preco:'',
         descricao:''
     }
+    const estadoInicialProduto = props.prodEdit;
 
     const [produto, setProduto] = useState(estadoInicialProduto);
     const [formValido, setFormValido] = useState(false);
+
+    const {status, mensagem, listaProdutos} = useSelector((state) => state.produto);
+    const dispatch = useDispatch();
 
     function manipularMudancas(e) {
         const componente = e.currentTarget;
@@ -23,18 +29,19 @@ export default function FormCadProduto(props) {
     function manipularSubmissao(e) {
         const form = e.currentTarget;
         if(form.checkValidity()) {
-            let prod = {
-                nome: document.getElementById("nome").value,
-                marca: document.getElementById("marca").value,
-                codigo: document.getElementById("codigo").value,
-                validade: document.getElementById("validade").value,
-                fabricacao: document.getElementById("fabricacao").value,
-                preco: document.getElementById("preco").value,
-                descricao: document.getElementById("descricao").value
+            if(!props.edicao) {
+                dispatch(adicionarProd(produto));
+                window.alert('Produto cadastrado com sucesso!');
             }
+            else {
+                dispatch(atualizarProd(produto));
 
-            props.setLista([...props.lista,prod]);
-            setProduto(estadoInicialProduto);
+                props.setEdicao(false);
+                props.setProdEdit(prodVazio);
+                window.alert('Produto alterado com sucesso');
+            }
+            
+            setProduto(prodVazio);
             setFormValido(false);
         }
         else
@@ -89,6 +96,7 @@ export default function FormCadProduto(props) {
                                     name="codigo"
                                     onChange={manipularMudancas}
                                     value={produto.codigo}
+                                    disabled={props.edicao ? true : false}
                                     required/>
                             </FloatingLabel>
                             <Form.Control.Feedback type="invalid">Informe o código do produto!</Form.Control.Feedback>
@@ -158,11 +166,13 @@ export default function FormCadProduto(props) {
                 </Row>
                 <Row>
                     <Col md={6} offset={5} className="d-flex justify-content-end">
-                        <Button type="submit" variant={"primary"}>Cadastrar</Button>
+                        <Button type="submit" variant={props.edicao ? "warning" : "primary"}>{props.edicao ? "Alterar" : "Cadastrar"}</Button>
                     </Col>
                     <Col md={6} offset={5}>
                         <Button type="button" variant={"secondary"} onClick={()=>{
-                            props.estado(false)
+                            props.estado(false);
+                            props.setEdicao(false);
+                            props.setProdEdit(prodVazio);
                         }}>Voltar</Button>
                     </Col>
                 </Row>

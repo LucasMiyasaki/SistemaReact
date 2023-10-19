@@ -5,16 +5,16 @@ import { Container } from "react-bootstrap";
 export default function Pagina(props) {
     return (
         <>
+            <Menu />
             <Container>
-                <Menu />
-                <div style={{marginTop: "30px"}}>
+                <div style={{ marginTop: "30px" }}>
                     {
                         // filhos da página
                     }
                     {props.children}
                 </div>
-                <Rodape conteudo="Rua X, 100 - Vila Tal - Presidente Prudente/SP - CNPJ 00.000.000/0001-00"/>
             </Container>
+            <Rodape conteudo="Rua X, 100 - Vila Tal - Presidente Prudente/SP - CNPJ 00.000.000/0001-00" />
         </>
     )
 }
